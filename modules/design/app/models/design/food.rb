@@ -8,5 +8,6 @@ module Design
     end
 
     class DogFood < self; end
+    class CatFood < self; end
   end
 end

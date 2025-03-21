@@ -1,13 +1,28 @@
 module Design
   class Animal
     include ActiveModel::Model
+    class_attribute :likes, :talk
+
     class << self
       def types
         subclasses.map { _1.model_name.human }
       end
     end
 
-    class Cat < self; end
-    class Dog < self; end
+    def feed(food)
+      case food
+      when *likes
+        talk
+      end
+    end
+
+    class Cat < self
+      self.likes = [Food::CatFood]
+      self.talk = "Meow"
+    end
+    class Dog < self
+      self.likes = []
+      self.talk = "Bark"
+    end
   end
 end
