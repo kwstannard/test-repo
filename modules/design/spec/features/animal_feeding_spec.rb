@@ -71,7 +71,20 @@ RSpec.feature 'Animal feeding' do
     end
   end
 
-  scenario 'feeding a cat some human food'
+  scenario 'feeding a cat some human food' do
+    visit! '/design/animal_feedings'
+
+    select('Cat', from: 'Animal type')
+    select('Human food', from: 'Food type')
+
+    click_button
+    expect(status_code).to eq(200)
+
+    within('.stdout') do |x|
+      expect(page.text).to be_empty
+    end
+  end
+
 
   scenario 'feeding a dog some dog food'
   scenario 'feeding a dog some cat food'
