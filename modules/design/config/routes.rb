@@ -1,4 +1,5 @@
 Design::Engine.routes.draw do
+  root to: redirect("/design/animal_feedings")
   resources(:animal_feedings)
 end
 
