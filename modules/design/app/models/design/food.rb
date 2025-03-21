@@ -11,5 +11,6 @@ module Design
     class CatFood < self; end
     class Chicken < self; end
     class Milk < self; end
+    class Lemon < self; end
   end
 end
