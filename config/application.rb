@@ -25,3 +25,18 @@ module HealthieTakehome
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+puts <<MSG
+
+
+######################################
+Welcome to the takehome app #{ENV['USER']}.
+
+Please start at http://0.0.0.0:3000/introduction and go from there.
+
+Regards,
+Wolf
+######################################
+
+
+MSG
