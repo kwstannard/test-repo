@@ -1,0 +1,13 @@
+h1 STDOUT
+.stdout
+  - flash.each do |msg|
+    p= msg
+
+= form_with(model: Design::AnimalFeeding.new) do |form|
+  = form.label :animal_type
+  = form.select :animal_type, Design::Animal.types, selected: Design::Animal.types.first
+
+  = form.label :food_type
+  = form.select :food_type, Design::Food.types, selected: Design::Food.types.first
+
+  = form.submit
