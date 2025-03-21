@@ -17,5 +17,3 @@ gem "rubocop-rails-omakase", require: false
 
 gem "rspec-rails"
 gem "capybara"
-gem "playwright-ruby-client"
-gem "capybara-playwright-driver"
