@@ -85,11 +85,87 @@ RSpec.feature 'Animal feeding' do
     end
   end
 
+  scenario 'feeding a dog some dog food' do
+    visit! '/design/animal_feedings'
 
-  scenario 'feeding a dog some dog food'
-  scenario 'feeding a dog some cat food'
-  scenario 'feeding a dog some chicken'
-  scenario 'feeding a dog some milk'
-  scenario 'feeding a dog some lemon'
-  scenario 'feeding a dog some human food'
+    select('Dog', from: 'Animal type')
+    select('Dog food', from: 'Food type')
+
+    click_button
+    expect(status_code).to eq(200)
+
+    within('.stdout') do |x|
+      expect(page.text).to eq("Bark")
+    end
+  end
+
+  scenario 'feeding a dog some cat food' do
+    visit! '/design/animal_feedings'
+
+    select('Dog', from: 'Animal type')
+    select('Cat food', from: 'Food type')
+
+    click_button
+    expect(status_code).to eq(200)
+
+    within('.stdout') do |x|
+      expect(page.text).to eq("Bark")
+    end
+  end
+
+  scenario 'feeding a dog some chicken'do
+    visit! '/design/animal_feedings'
+
+    select('Dog', from: 'Animal type')
+    select('Chicken', from: 'Food type')
+
+    click_button
+    expect(status_code).to eq(200)
+
+    within('.stdout') do |x|
+      expect(page.text).to eq("Bark")
+    end
+  end
+
+  scenario 'feeding a dog some milk' do
+    visit! '/design/animal_feedings'
+
+    select('Dog', from: 'Animal type')
+    select('Milk', from: 'Food type')
+
+    click_button
+    expect(status_code).to eq(200)
+
+    within('.stdout') do |x|
+      expect(page.text).to be_empty
+    end
+  end
+
+  scenario 'feeding a dog some lemon' do
+    visit! '/design/animal_feedings'
+
+    select('Dog', from: 'Animal type')
+    select('Lemon', from: 'Food type')
+
+    click_button
+    expect(status_code).to eq(200)
+
+    within('.stdout') do |x|
+      expect(page.text).to be_empty
+    end
+  end
+
+  scenario 'feeding a dog some human food' do
+    visit! '/design/animal_feedings'
+
+    select('Dog', from: 'Animal type')
+    select('Human food', from: 'Food type')
+
+    click_button
+    expect(status_code).to eq(200)
+
+    within('.stdout') do |x|
+      expect(page.text).to eq("Bark")
+    end
+  end
 end

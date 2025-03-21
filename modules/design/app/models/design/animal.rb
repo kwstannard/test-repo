@@ -21,7 +21,7 @@ module Design
       self.talk = "Meow"
     end
     class Dog < self
-      self.likes = []
+      self.likes = [Food::CatFood, Food::DogFood, Food::HumanFood, Food::Chicken]
       self.talk = "Bark"
     end
   end
