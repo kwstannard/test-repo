@@ -1,13 +1,14 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
+require_relative '../test/dummy/config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 # Uncomment the line below in case you have `--require rails_helper` in the `.rspec` file
 # that will avoid rails generators crashing because migrations haven't been run yet
 # return unless Rails.env.test?
 require 'rspec/rails'
+require 'capybara/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -61,10 +62,28 @@ RSpec.configure do |config|
   # behaviour is considered legacy and will be removed in a future version.
   #
   # To enable this behaviour uncomment the line below.
-  # config.infer_spec_type_from_file_location!
+  config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
+  config.filter_gems_from_backtrace("rspec", "rspec-core")
+
+  feature_module = Module.new do
+    def visit!(path)
+      visit(path)
+      expect(current_path).to eq(path)
+      expect(status_code).to eq(200)
+    end
+
+    def table_hash(css = "table")
+      rows = find(css).find_all("tr")
+
+      keys = rows[0].find_all("th").map(&:text)
+      records = rows[1..-1].map { _1.find_all("td").map(&:text) }
+
+      records.map { |row| keys.zip(row).to_h }
+    end
+  end
+  config.include(feature_module, type: :feature)
 end
