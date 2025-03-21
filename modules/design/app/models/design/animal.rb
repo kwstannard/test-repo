@@ -17,7 +17,7 @@ module Design
     end
 
     class Cat < self
-      self.likes = [Food::CatFood]
+      self.likes = [Food::CatFood, Food::Chicken]
       self.talk = "Meow"
     end
     class Dog < self
