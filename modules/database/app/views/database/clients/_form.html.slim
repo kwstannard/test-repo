@@ -1,0 +1,11 @@
+= form_with(model: @client) do |form|
+  = form.label :name
+  = form.text_field :name
+
+  = form.label :email
+  = form.text_field :email
+
+  = form.label :plan
+  = form.select :plan, @client.class.plans.keys
+
+  = form.submit
