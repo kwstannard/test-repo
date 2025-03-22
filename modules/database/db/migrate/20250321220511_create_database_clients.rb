@@ -3,7 +3,6 @@ class CreateDatabaseClients < ActiveRecord::Migration[8.0]
     create_table :database_clients do |t|
       t.string :name, null: false
       t.string :email, null: false
-      t.string :plan, null: false
 
       t.timestamps
     end
