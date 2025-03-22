@@ -1,4 +1,5 @@
 Database::Engine.routes.draw do
+  resources(:providers)
   resources(:clients)
   root to: redirect('/database/clients')
 end

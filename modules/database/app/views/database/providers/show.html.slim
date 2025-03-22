@@ -1,0 +1,7 @@
+h2= @provider.name
+
+= @provider.email
+
+h3 Clients
+- @provider.clients.each do |client|
+  = client.name
