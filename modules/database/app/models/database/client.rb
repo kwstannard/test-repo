@@ -1,5 +1,5 @@
 module Database
   class Client < ApplicationRecord
-    enum(:plan, %w[Premium Basic].then{ _1.zip(_1) }.to_h)
+    has_and_belongs_to_many :providers
   end
 end

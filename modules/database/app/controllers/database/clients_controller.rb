@@ -6,10 +6,12 @@ module Database
 
     def create
       @client = Client.new(form_params)
-
       @client.save!
+      redirect_to client_path(@client)
+    end
 
-      new
+    def show
+      @client = Client.includes(:providers).find(params[:id])
     end
 
     def form_params

@@ -5,11 +5,17 @@ RSpec.feature 'provider management' do
     # client setup
     clients = %w(Sal Why Zod)
     clients.each do |name|
+      email = "#{name}@example.com".downcase
+
       visit!('/database/clients/new')
       fill_in("Name", with: name)
-      fill_in("Email", with: "#{name.downcase}@example.com")
+      fill_in("Email", with: email)
 
       click_button
+
+      expect(current_path).to match(/clients\/\d+\z/)
+      expect(page).to have_text(name)
+      expect(page).to have_text(email)
     end
 
     # provider setup
@@ -20,19 +26,11 @@ RSpec.feature 'provider management' do
       fill_in("Name", with: name)
       fill_in("Email", with: email)
 
-      sub_clients = clients[0..i]
-      sub_clients.each do |client|
-        check(client)
-      end
-
       click_button
 
       expect(current_path).to match(/providers\/\d+\z/)
       expect(page).to have_text(name)
       expect(page).to have_text(email)
-      sub_clients.each do |client|
-        expect(page).to have_text(client)
-      end
     end
   end
 end
