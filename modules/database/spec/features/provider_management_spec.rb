@@ -19,8 +19,8 @@ RSpec.feature 'provider management' do
     end
 
     # provider setup
-    names = %w(Bob Jill Jon)
-    names.each.with_index do |name, i|
+    providers = %w(Bob Jill Jon)
+    providers.each.with_index do |name, i|
       email = "#{name}@localhost".downcase
 
       visit!('/database/providers/new')
