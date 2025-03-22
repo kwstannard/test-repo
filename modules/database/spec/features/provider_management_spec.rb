@@ -5,7 +5,7 @@ RSpec.feature 'provider management' do
     # client setup
     clients = %w(Sal Why Zod)
     clients.each do |name|
-      email = "#{name}@example.com".downcase
+      email = "#{name}@localhost".downcase
 
       visit!('/database/clients/new')
       fill_in("Name", with: name)
@@ -21,7 +21,8 @@ RSpec.feature 'provider management' do
     # provider setup
     names = %w(Bob Jill Jon)
     names.each.with_index do |name, i|
-      email = "#{name}@example.com"
+      email = "#{name}@localhost".downcase
+
       visit!('/database/providers/new')
       fill_in("Name", with: name)
       fill_in("Email", with: email)
