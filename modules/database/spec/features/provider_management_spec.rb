@@ -49,8 +49,10 @@ RSpec.feature 'provider management' do
       click_button
 
       expect(current_path).to match(/clients\/\d+\z/)
+      puts page.html
       sub_providers.each do |provider|
         expect(page).to have_text(provider)
+        within("##{provider.downcase}") { expect(page).to have_text("Basic") }
       end
     end
   end

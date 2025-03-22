@@ -3,6 +3,8 @@ h2= @client.name
 
 h2 Providers
 - @client.providers.each do |provider|
-  = provider.name
+  div id="#{provider.name.downcase}"
+    = provider.name
+    | Basic
 
 = link_to("Edit", edit_client_path(@client))
