@@ -4,4 +4,4 @@ h2= @provider.name
 
 h3 Clients
 - @provider.clients.each do |client|
-  = client.name
+  = link_to(client.name, client)

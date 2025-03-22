@@ -34,10 +34,11 @@ RSpec.feature 'provider management' do
       expect(page).to have_text(email)
     end
 
-    clients.each.with_index do |name, i|
+    # add relationships and check that they are visible
+    clients.each.with_index do |client, i|
       visit!('/database/clients')
 
-      click_on(name)
+      click_on(client)
 
       click_on('Edit')
 
@@ -49,9 +50,16 @@ RSpec.feature 'provider management' do
       click_button
 
       expect(current_path).to match(/clients\/\d+\z/)
-      puts page.html
+
+      providers[i..-1].each do |unchecked_provider|
+        expect(page).to_not have_text(unchecked_provider)
+      end
+
       sub_providers.each do |provider|
-        expect(page).to have_text(provider)
+        click_on provider
+        expect(current_path).to match(/providers\/\d+\z/)
+        click_on client
+
         within("##{provider.downcase}") { expect(page).to have_text("Basic") }
       end
     end
