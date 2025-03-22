@@ -12,16 +12,18 @@ module Database
     end
 
     def show
-      @client = Client.includes(:providers).find(params[:id])
+      @client = Client.find(params[:id])
+        .tap(&:clients_providers) # preloading association. includes was not working
     end
 
     def edit
-      @client = Client.includes(:providers).find(params[:id])
+      @client = Client.find(params[:id])
+        .tap(&:clients_providers) # preloading association. includes was not working
       @providers = Provider.all
     end
     
     def update
-      @client = Client.includes(:providers).find(params[:id])
+      @client = Client.find(params[:id])
       @client.update!(form_params)
       redirect_to client_path(@client)
     end

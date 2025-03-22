@@ -1,0 +1,8 @@
+h2= @clients_provider.name
+
+= @clients_provider.email
+= form_with(model: @clients_provider) do |form|
+  = form.hidden_field(:plan, value: @plan)
+  = form.submit("Make #{@plan}")
+
+= link_to(@clients_provider.client.name, @clients_provider.client)

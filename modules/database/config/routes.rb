@@ -1,6 +1,8 @@
 Database::Engine.routes.draw do
   resources(:providers)
-  resources(:clients)
+  resources(:clients) do
+    resources :providers, controller: 'clients_providers', param: :provider_id
+  end
   root to: redirect('/database/clients')
 end
 

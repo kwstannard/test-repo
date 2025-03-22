@@ -42,7 +42,7 @@ RSpec.feature 'provider management' do
 
       click_on('Edit')
 
-      sub_providers = providers[0...i]
+      sub_providers = providers[0..i]
       sub_providers.each do |provider|
         check(provider)
       end
@@ -51,17 +51,29 @@ RSpec.feature 'provider management' do
 
       expect(current_path).to match(/clients\/\d+\z/)
 
-      providers[i..-1].each do |unchecked_provider|
+      providers[i+1..-1].each do |unchecked_provider|
         expect(page).to_not have_text(unchecked_provider)
       end
 
+      # Check that all subproviders exist
       sub_providers.each do |provider|
         click_on provider
-        expect(current_path).to match(/providers\/\d+\z/)
+        expect(current_path).to match(/clients\/\d+\/providers\/\d+\z/)
         click_on client
-
-        within("##{provider.downcase}") { expect(page).to have_text("Basic") }
       end
+
+      # run through premium functionality
+      premium_provider = sub_providers.first
+      click_on premium_provider
+      expect(current_path).to match(/clients\/\d+\/providers\/\d+\z/)
+      click_on 'Make Premium'
+      click_on client
+      within("##{premium_provider}") { expect(page).to have_text("Premium") }
+
+      click_on premium_provider
+      click_on 'Make Basic'
+      click_on client
+      within("##{premium_provider}") { expect(page).to have_text("Basic") }
     end
   end
 end

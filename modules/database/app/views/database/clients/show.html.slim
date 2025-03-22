@@ -2,9 +2,9 @@ h2= @client.name
 = @client.email
 
 h2 Providers
-- @client.providers.each do |provider|
-  div id="#{provider.name.downcase}"
+- @client.clients_providers.each do |provider|
+  div id="#{provider.name}"
     = link_to(provider.name, provider)
-    | Basic
+    = provider.plan
 
 = link_to("Edit", edit_client_path(@client))
