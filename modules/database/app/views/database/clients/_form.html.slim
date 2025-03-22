@@ -5,4 +5,6 @@
   = form.label :email
   = form.text_field :email
 
+  = form.collection_checkboxes :provider_ids, @providers, :id, :name
+
   = form.submit

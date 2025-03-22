@@ -20,7 +20,7 @@ RSpec.feature 'provider management' do
 
     # provider setup
     providers = %w(Bob Jill Jon)
-    providers.each.with_index do |name, i|
+    providers.each.with_index do |name|
       email = "#{name}@localhost".downcase
 
       visit!('/database/providers/new')
@@ -32,6 +32,26 @@ RSpec.feature 'provider management' do
       expect(current_path).to match(/providers\/\d+\z/)
       expect(page).to have_text(name)
       expect(page).to have_text(email)
+    end
+
+    clients.each.with_index do |name, i|
+      visit!('/database/clients')
+
+      click_on(name)
+
+      click_on('Edit')
+
+      sub_providers = providers[0...i]
+      sub_providers.each do |provider|
+        check(provider)
+      end
+
+      click_button
+
+      expect(current_path).to match(/clients\/\d+\z/)
+      sub_providers.each do |provider|
+        expect(page).to have_text(provider)
+      end
     end
   end
 end
