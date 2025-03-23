@@ -8,6 +8,7 @@ module Database
     def update
       @providers_client = Database::ProvidersClient.find_by(id_params)
       @providers_client.update(form_params)
+      @plan = @providers_client.other_plan
       render :show
     end
 

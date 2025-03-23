@@ -89,7 +89,8 @@ RSpec.configure do |config|
     def create_client(name)
       email = "#{name}@localhost".downcase
 
-      visit!('/database/clients/new')
+      visit!('/database/clients')
+      click_on "New Client"
       fill_in("Name", with: name)
       fill_in("Email", with: email)
 
@@ -103,7 +104,8 @@ RSpec.configure do |config|
     def create_provider(name)
       email = "#{name}@localhost".downcase
 
-      visit!('/database/providers/new')
+      visit!('/database/providers')
+      click_on "New Provider"
       fill_in("Name", with: name)
       fill_in("Email", with: email)
 
