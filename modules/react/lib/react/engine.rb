@@ -13,12 +13,12 @@ module React
       )
     }
 
-    if %w(test development).include?(Rails.env)
-      initializer("watch assets") do
-        pid = Process.spawn("npm run watch")
+    if %w(development).include?(Rails.env)
+      server {
+        pid = Process.spawn("cd #{self.root}; npm run watch")
 
         at_exit { puts 'waiting on esbuild watch'; Process.wait(pid) && puts('watch ended') }
-      end
+      }
     end
   end
 end

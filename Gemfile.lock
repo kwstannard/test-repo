@@ -3,6 +3,7 @@ PATH
   specs:
     database (0.1.0)
       rails (>= 8.0.2)
+      slim-rails
 
 PATH
   remote: modules/design
