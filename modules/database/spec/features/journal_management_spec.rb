@@ -50,4 +50,19 @@ RSpec.feature 'client journaling' do
     click_on "Diet"
     click_on client
   end
+
+  scenario 'a provider wants to view journal entries by all their clients' do
+    provider = "Bob"
+    create_provider(provider)
+
+    clients = %w[Joe Jill Jeff Josie]
+    clients.each {|c| create_client(c) }
+
+    associate_clients_to_provider(clients, provider)
+
+    visit!('/database/providers')
+    click_on provider
+
+
+  end
 end

@@ -1,5 +1,7 @@
 Database::Engine.routes.draw do
-  resources(:providers)
+  resources(:providers) do
+    resources :clients, controller: 'providers_clients', param: :client_id
+  end
   resources(:clients) do
     resources :providers, controller: 'clients_providers', param: :provider_id
     resources :journals

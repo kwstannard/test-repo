@@ -114,6 +114,31 @@ RSpec.configure do |config|
       expect(page).to have_text(email)
     end
 
+    def associate_clients_to_provider(clients, provider)
+      visit!('/database/providers')
+
+      click_on(provider)
+
+      click_on('Edit')
+
+      clients.each do |client|
+        check(client)
+      end
+
+      click_button
+
+      expect(current_path).to match(/providers\/\d+\z/)
+
+      expect(table_hash.map{|row| row['Name']}.sort).to eq(clients.sort)
+
+      # Check that all subclients are visible
+      clients.each do |client|
+        click_on client
+        expect(current_path).to match(/providers\/\d+\/clients\/\d+\z/)
+        click_on provider
+      end
+    end
+
     def associate_client_to_providers(client, sub_providers)
       visit!('/database/clients')
 

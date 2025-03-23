@@ -13,6 +13,7 @@ module Database
 
     def show
       @journal = Journal.find(params[:id])
+      @journal.notes.order(:created_at)
     end
 
     def form_params

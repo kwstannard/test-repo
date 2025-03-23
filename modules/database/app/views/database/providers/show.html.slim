@@ -1,7 +1,14 @@
 h2= @provider.name
-
 = @provider.email
 
 h3 Clients
-- @provider.clients.each do |client|
-  = link_to(client.name, client)
+table
+  tr
+    th Name
+    th Plan
+  - @provider.providers_clients.each do |client|
+    tr
+      td= link_to(client.name, client)
+      td= client.plan
+
+= link_to("Edit", edit_provider_path(@provider))
