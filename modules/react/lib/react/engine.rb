@@ -15,7 +15,9 @@ module React
 
     if %w(test development).include?(Rails.env)
       initializer("watch assets") do
-        Process.spawn("npm run watch")
+        pid = Process.spawn("npm run watch")
+
+        at_exit { puts 'waiting on esbuild watch'; Process.wait(pid) && puts('watch ended') }
       end
     end
   end
