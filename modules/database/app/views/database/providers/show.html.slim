@@ -2,7 +2,7 @@ h2= @provider.name
 = @provider.email
 
 h3 Clients
-table
+table#clients
   tr
     th Name
     th Plan
@@ -10,5 +10,16 @@ table
     tr
       td= link_to(client.name, client)
       td= client.plan
+
+h3 Notes
+table#notes
+  tr
+    th Note
+    th At
+  - @provider.notes.order('created_at desc').each do |note|
+    tr
+      td= note.text
+      td= note.created_at
+
 
 = link_to("Edit", edit_provider_path(@provider))

@@ -129,7 +129,7 @@ RSpec.configure do |config|
 
       expect(current_path).to match(/providers\/\d+\z/)
 
-      expect(table_hash.map{|row| row['Name']}.sort).to eq(clients.sort)
+      expect(table_hash("#clients").map{|row| row['Name']}.sort).to eq(clients.sort)
 
       # Check that all subclients are visible
       clients.each do |client|

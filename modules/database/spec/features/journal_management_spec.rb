@@ -60,9 +60,32 @@ RSpec.feature 'client journaling' do
 
     associate_clients_to_provider(clients, provider)
 
+    dates = ['2025-01-01', '2025-05-02', '2025-02-04', '2024-09-10'].map(&:to_time)
+    otnm = Time.method(:now)
+
+    clients.zip(dates).each do |(client, date)|
+      Time.define_singleton_method(:now) { date }
+      visit!('/database/clients')
+      click_on client
+      click_on "New Journal"
+      fill_in "Name", with: "Journal"
+      click_button
+      fill_in "Text", with: "It is good to be #{client}"
+      click_button
+      Time.define_singleton_method(:now, &otnm)
+    end
+
+
     visit!('/database/providers')
     click_on provider
-
+    
+    # This is ordered by time
+    expect(table_hash("#notes")).to eq([
+      {"At"=>"2025-05-02 04:00:00 UTC", "Note"=>"It is good to be Jill"},
+      {"At"=>"2025-02-04 05:00:00 UTC", "Note"=>"It is good to be Jeff"},
+      {"At"=>"2025-01-01 05:00:00 UTC", "Note"=>"It is good to be Joe"},
+      {"At"=>"2024-09-10 04:00:00 UTC", "Note"=>"It is good to be Josie"},
+    ])
 
   end
 end
