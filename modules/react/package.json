@@ -1,0 +1,30 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "a todo app",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "npx esbuild src/*.* --bundle --sourcemap --format=esm --outdir=public/react/javascript",
+    "watch": "npx esbuild src/*.* --bundle --sourcemap --format=esm --outdir=public/react/javascript --watch",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "overrides": {
+    "glob": "11.0.1"
+  },
+  "author": "Kelly Stannard",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "esbuild": "^0.25.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
