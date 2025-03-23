@@ -84,6 +84,60 @@ RSpec.configure do |config|
 
       records.map { |row| keys.zip(row).to_h }
     end
+
+    # TODO make a better spec/helper file system
+    def create_client(name)
+      email = "#{name}@localhost".downcase
+
+      visit!('/database/clients/new')
+      fill_in("Name", with: name)
+      fill_in("Email", with: email)
+
+      click_button
+
+      expect(current_path).to match(/clients\/\d+\z/)
+      expect(page).to have_text(name)
+      expect(page).to have_text(email)
+    end
+
+    def create_provider(name)
+      email = "#{name}@localhost".downcase
+
+      visit!('/database/providers/new')
+      fill_in("Name", with: name)
+      fill_in("Email", with: email)
+
+      click_button
+
+      expect(current_path).to match(/providers\/\d+\z/)
+      expect(page).to have_text(name)
+      expect(page).to have_text(email)
+    end
+
+    def associate_client_to_providers(client, sub_providers)
+      visit!('/database/clients')
+
+      click_on(client)
+
+      click_on('Edit')
+
+      sub_providers.each do |provider|
+        check(provider)
+      end
+
+      click_button
+
+      expect(current_path).to match(/clients\/\d+\z/)
+
+      expect(table_hash.map{|row| row['Name']}.sort).to eq(sub_providers.sort)
+
+      # Check that all subproviders are visible
+      sub_providers.each do |provider|
+        click_on provider
+        expect(current_path).to match(/clients\/\d+\/providers\/\d+\z/)
+        click_on client
+      end
+    end
   end
   config.include(feature_module, type: :feature)
 end

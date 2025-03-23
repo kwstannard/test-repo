@@ -1,9 +1,11 @@
 Database::Engine.routes.draw do
-  resources :notes
-  resources :journals
   resources(:providers)
   resources(:clients) do
     resources :providers, controller: 'clients_providers', param: :provider_id
+    resources :journals
+  end
+  resources :journals, only: [] do
+    resources :notes
   end
   root to: redirect('/database/clients')
 end

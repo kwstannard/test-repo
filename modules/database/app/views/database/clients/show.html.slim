@@ -1,6 +1,11 @@
 h2= @client.name
 = @client.email
 
+h2 Journals
+= link_to("New Journal", new_client_journal_path(@client))
+- @client.journals.each do |journal|
+  = link_to(journal.name, [@client, journal])
+
 h2 Providers
 table
   tr

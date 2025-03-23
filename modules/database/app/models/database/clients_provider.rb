@@ -8,7 +8,7 @@ module Database
     belongs_to :client
 
     def self.all
-      super.joins(:provider).select('database_providers.*, database_clients_providers.*')
+      super.joins(:provider).select('providers.*, clients_providers.*')
     end
 
     def other_plan

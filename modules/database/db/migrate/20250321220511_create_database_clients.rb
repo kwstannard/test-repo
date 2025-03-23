@@ -1,6 +1,6 @@
 class CreateDatabaseClients < ActiveRecord::Migration[8.0]
   def change
-    create_table :database_clients do |t|
+    create_table :clients do |t|
       t.string :name, null: false
       t.string :email, null: false
 

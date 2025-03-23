@@ -1,0 +1,9 @@
+h2 = @journal.name
+h2 Client
+= link_to(@journal.client.name, @journal.client)
+
+h2 Notes
+= link_to("New Note", new_journal_note_path(@journal, @journal.notes.new))
+#notes
+  - @journal.notes.each do |note|
+    p = note.text
