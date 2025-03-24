@@ -69,6 +69,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   config.filter_gems_from_backtrace("rspec", "rspec-core")
 
+  config.before(:suite, type: :feature) do
+    system("npm run build")
+  end
+
   feature_module = Module.new do
     def visit!(path)
       visit(path)
