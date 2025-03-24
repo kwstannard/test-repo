@@ -6,5 +6,7 @@ RSpec.feature 'TODO list app' do
     expect(page).to have_content("ToDo")
     expect(page).to have_content("Doing")
     expect(page).to have_content("Done")
+
+    click_on("New Item")
   end
 end
