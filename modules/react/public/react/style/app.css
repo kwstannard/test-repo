@@ -1,0 +1,24 @@
+#root {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  transform-origin: center 4in;
+}
+
+h1 {
+  color: rebeccapurple;
+  font-size: 2em;
+}
+
+.list {
+  width: 3in;
+}
+
+.item {
+  padding: 0.5cm;
+  border: 2px;
+  border-style: dashed;
+  border-color: burlywood;
+  color: teal;
+  font-size: 1.5em;
+}

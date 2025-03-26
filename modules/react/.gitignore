@@ -1,3 +1,4 @@
 /test
 /node_modules
 /public/react/javascript
+.npmrc
