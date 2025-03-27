@@ -14,6 +14,12 @@
  *= require_self
  */
 
+body {
+  justify-contents: center;
+  min-width: 500px;
+  width: 25%;
+}
+
 tr {
   height: 2em;
 }
@@ -35,6 +41,30 @@ a.button {
   border-style: double;
   border-width: 1px;
   border-radius: 0.25em;
-  background-color: lightgreen;
   font-weight: bold;
+  text-color: black;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  width: 100%
+}
+
+form h3 {
+  grid-column: 1 / span 2;
+}
+
+form > input {
+  display: block;
+}
+
+form > label {
+  display: block;
+}
+
+#header {
+  padding: 1em;
+  border-style: none none double none;
+  border-width: 1px;
 }
