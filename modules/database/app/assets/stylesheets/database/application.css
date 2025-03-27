@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+tr {
+  height: 2em;
+}
+
+table, th, td {
+  border-style: double;
+  border-width: 1px;
+  padding: 0.25cm;
+  margin: 0.25cm;
+}
+
+table {
+  width: 25%;
+  border-collapse: collapse;
+}
+
+a.button {
+  padding: 0.25em;
+  border-style: double;
+  border-width: 1px;
+  border-radius: 0.25em;
+  background-color: lightgreen;
+  font-weight: bold;
+}
