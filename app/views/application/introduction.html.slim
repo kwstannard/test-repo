@@ -1,7 +1,15 @@
 p Hello!
-p Welcome to my takehome submission. I am Wolf. I am showing off a few things here.
+p Welcome to my takehome submission. I am Wolf. Some notes:
 p I am using a modular monolith. Each question gets its own module under the modules dir.
-p If you care about styling, my resume is also done in html.
+p I tried to not spend too much time in css land. Just enough to make things look readable.
+p The tests are proof of completion of requirements.
+p All tests are using the rails feature/integration tests. In feature tests I prefer to have a
+full flow of all important functionality for a feature. So, you will see the tests themselves create
+everything and then updates them as necessary through the UI.
+p The design page is a extremely simple. "STDOUT" is a flash render.
+p The react section looks more like a traditional project. Source code is in the src dir. Everything is built to the
+public directory and the engine adds in a middleware to return files from the public directory.
+I thought it was kind of cool that I could do this in an engine.
 p Please refer to the commit log for more information.
 
 = link_to("Design question", design_path)

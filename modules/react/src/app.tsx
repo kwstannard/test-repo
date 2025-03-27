@@ -16,10 +16,6 @@ const App = () => {
   const [doings, setDoings] = React.useState([]);
   const [dones, setDones] = React.useState([]);
 
-  console.log('todo', todos);
-  console.log('doin', doings);
-  console.log('done', dones);
-
   const cutItemAtToDo = cutItemAtFunc(setTodos);
   const cutItemAtDoing = cutItemAtFunc(setDoings);
   const cutItemAtDone = cutItemAtFunc(setDones);
@@ -50,13 +46,16 @@ document.head.appendChild(pizzazzStyle)
 const pizzazz = () => {
   var deg = 0;
   iid=setInterval(
-    () => { deg++; pizzazzStyle.textContent = "#root { transform: rotate("+deg+"deg) }" },
+    () => {
+      if (deg < (360 * 2)) { deg++ }
+      pizzazzStyle.textContent = "#root { transform: rotate("+deg+"deg) }\n img { opacity: "+deg/8+"% }"
+    },
     1
   )
 
   setTimeout(
     () => { clearInterval(iid); pizzazzStyle.textContent = "" },
-    5000
+    4000
   )
 }
 

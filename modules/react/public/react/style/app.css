@@ -10,8 +10,17 @@ h1 {
   font-size: 2em;
 }
 
+img {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0%;
+}
+
 .list {
-  width: 3in;
+  width: 30%;
+  min-width: 200px;
 }
 
 .item {
