@@ -23,20 +23,22 @@ module HealthieTakehome
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    server do
+      puts <<~MSG
+
+
+        ######################################
+        Welcome to the takehome app #{ENV['USER']}.
+
+        Please start at http://0.0.0.0:3000/introduction and go from there.
+
+        Regards,
+        Wolf
+        ######################################
+
+
+      MSG
+    end
   end
 end
-
-puts <<MSG
-
-
-######################################
-Welcome to the takehome app #{ENV['USER']}.
-
-Please start at http://0.0.0.0:3000/introduction and go from there.
-
-Regards,
-Wolf
-######################################
-
-
-MSG
