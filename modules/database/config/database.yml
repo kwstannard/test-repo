@@ -8,19 +8,27 @@ default: &default
   adapter: sqlite3
   pool: 5
   timeout: 5000
+  migrations_paths: <%= Database::Engine.paths["db/migrate"].first %>
+  schema_dump: <%= Database::Engine.paths["db"].paths.first.join("schema.rb") %>
 
 development:
-  <<: *default
-  database: storage/database_dev.sqlite3
+  database:
+    <<: *default
+    database: storage/database_dev.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: storage/database_test.sqlite3
+  database:
+    <<: *default
+    database: storage/database_test.sqlite3
 
 
+production:
+  database:
+    <<: *default
+    database: storage/database_prod.sqlite3
 # SQLite3 write its data on the local filesystem, as such it requires
 # persistent disks. If you are deploying to a managed service, you should
 # make sure it provides disk persistence, as many don't.

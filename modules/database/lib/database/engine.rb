@@ -5,15 +5,19 @@ module Database
 
   class Engine < ::Rails::Engine
     isolate_namespace Database
+    
+    # This sets the database configuration from Configuration#database_configuration
+    # and then establishes the connection. Avoid referencing ApplicationRecord in this
+    # or you can get a dependency loop.
+    initializer "database.initialize_database" do
+      ActiveSupport.on_load(:active_record) do
+        application_config = Rails.application.config.database_configuration
+        engine_config = ActiveSupport::ConfigurationFile.parse(Engine.root.join("config", "database.yml"))
+        raise 'configs environments wrong' if application_config.keys != engine_config.keys
+        self.configurations = application_config.deep_merge(engine_config)
+      end
+    end
 
-    cattr_accessor :db_config
-    self.db_config = YAML.safe_load(
-      Engine.root.join("config", "database.yml").read,
-      aliases: true,
-    )
-
-    config.after_initialize {
-      ApplicationRecord.establish_connection(db_config[Rails.env])
-    }
+    config.after_initialize { ApplicationRecord }
   end
 end
