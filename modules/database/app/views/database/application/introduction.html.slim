@@ -1,0 +1,20 @@
+p 
+  | This is the database design question answer. Please note, I only did some very
+    basic styling for this. This is run in a rails engine with sqlite backend.
+p 
+  |
+    I did do some interesting stuff on the database loading side because I
+    never liked how by default your are supposed to "install" the migrations on
+    the parent app and add routes and add to the database config. I think engines
+    should be more like a plugin.
+p
+  |
+    The engine database configs gets appended to the application database
+    configs at runtime to allow the engine models to access the correct
+    database. Also, to get the engine database tasks to work I have to specify
+    the location in the database.yml file and then within the tasks I have to
+    tell ActiveRecord that it needs to use the connection owned by
+    Database::ApplicationRecord for the engine migrations.
+p
+  |
+    To test out the site, click the above buttons. The database is seeded.

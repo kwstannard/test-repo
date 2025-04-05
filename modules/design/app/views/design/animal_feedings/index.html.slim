@@ -6,7 +6,7 @@ h3 Inputs
   = form.label :food_type
   = form.select :food_type, Design::Food.then{ _1.types.zip(_1.subclasses)}, selected: Design::Food.types.first
 
-  = form.submit
+  = form.submit("!! Feed !!")
 
 h3 STDOUT
 .stdout

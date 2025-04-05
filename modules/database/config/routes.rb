@@ -9,7 +9,7 @@ Database::Engine.routes.draw do
   resources :journals, only: [] do
     resources :notes
   end
-  root to: redirect('/database/clients')
+  root to: 'application#introduction'
 end
 
 Rails.application.routes.draw do
