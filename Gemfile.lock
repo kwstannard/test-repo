@@ -1,21 +1,21 @@
 PATH
   remote: modules/database
   specs:
-    database (0.1.0)
+    database (0.0.1)
       rails (>= 8.0.2)
       slim-rails
 
 PATH
   remote: modules/design
   specs:
-    design (0.1.0)
+    design (0.0.1)
       rails (>= 8.0.2)
       slim-rails
 
 PATH
   remote: modules/react
   specs:
-    react (0.1.0)
+    react (0.0.1)
       rails (>= 8.0.2)
 
 GEM

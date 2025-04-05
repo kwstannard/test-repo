@@ -1,8 +1,7 @@
-require_relative "lib/design/version"
 
 Gem::Specification.new do |spec|
   spec.name        = "design"
-  spec.version     = Design::VERSION
+  spec.version = "0.0.1"
   spec.authors     = [ "Kelly Wolf Stannard" ]
   spec.email       = [ "kwstannard@gmail.com" ]
   spec.homepage    = "TODO"

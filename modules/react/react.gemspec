@@ -1,8 +1,7 @@
-require_relative "lib/react/version"
 
 Gem::Specification.new do |spec|
   spec.name        = "react"
-  spec.version     = React::VERSION
+  spec.version = "0.0.1"
   spec.authors     = [ "Kelly Wolf Stannard" ]
   spec.email       = [ "kwstannard@gmail.com" ]
   spec.homepage    = "TODO"

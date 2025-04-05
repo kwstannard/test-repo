@@ -1,8 +1,7 @@
-require_relative "lib/database/version"
 
 Gem::Specification.new do |spec|
   spec.name        = "database"
-  spec.version     = Database::VERSION
+  spec.version = "0.0.1"
   spec.authors     = [ "Kelly Wolf Stannard" ]
   spec.email       = [ "kwstannard@gmail.com" ]
   spec.homepage    = "TODO"
